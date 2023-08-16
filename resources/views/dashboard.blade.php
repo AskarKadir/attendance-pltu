@@ -8,8 +8,33 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
+                <div class="p-6 text-gray-900 dark:text-gray-100 text-center">
+                    {{ __('Welcome to CPS Cirebon Attendance System') }}
+                </div>
+            </div>
+
+        </div>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="grid grid-cols-4 gap-5 my-5">
+                <div
+                    class="p-6 text-gray-900 dark:text-gray-100  bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg h-fit text-center">
+                    <p class="text-8xl">40</p>
+                    <p>Masuk</p>
+                </div>
+                <div
+                    class="p-6 text-gray-900 dark:text-gray-100  bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg h-fit text-center">
+                    <p class="text-8xl">10</p>
+                    <p>Absen</p>
+                </div>
+                <div
+                    class="p-6 text-gray-900 dark:text-gray-100  bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg h-fit text-center">
+                    <p class="text-8xl">5</p>
+                    <p>Izin</p>
+                </div>
+                <div
+                    class="p-6 text-gray-900 dark:text-gray-100  bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg h-fit text-center">
+                    <p class="text-8xl">13</p>
+                    <p>Sakit</p>
                 </div>
             </div>
         </div>
