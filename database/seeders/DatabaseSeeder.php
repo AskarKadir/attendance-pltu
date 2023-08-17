@@ -15,8 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         User::factory()->create([
             'name'              => 'Admin',
             'email'             => 'admin@admin.com',
@@ -25,8 +23,8 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'remember_token'    => Str::random(10),
             'is_admin'          => true
-
-
         ]);
+        User::factory(20)->create();
+
     }
 }
