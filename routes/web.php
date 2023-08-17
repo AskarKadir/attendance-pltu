@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,9 +27,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/attendance', function () {
         return view('attendance/index');
     })->name('attendance');
-    Route::get('/user', function () {
-        return view('user/index');
-    })->name('user');
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
+    Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+    Route::patch('/user/{user}/makeadmin', [UserController::class, 'makeadmin'])->name('user.makeadmin');
+    Route::patch('/user/{user}/removeadmin', [UserController::class, 'removeadmin'])->name('user.removeadmin');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
