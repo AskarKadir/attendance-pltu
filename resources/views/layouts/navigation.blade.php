@@ -18,7 +18,7 @@
                     <x-nav-link :href="route('attendance')" :active="request()->routeIs('attendance')">
                         {{ __('Attendance') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('user')" :active="request()->routeIs('user')">
+                    <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
                         {{ __('User') }}
                     </x-nav-link>
                 </div>
@@ -87,7 +87,7 @@
             <x-responsive-nav-link :href="route('attendance')" :active="request()->routeIs('attendance')">
                 {{ __('Attendance') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('user')" :active="request()->routeIs('user')">
+            <x-responsive-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
                 {{ __('User') }}
             </x-responsive-nav-link>
         </div>
