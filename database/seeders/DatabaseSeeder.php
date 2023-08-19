@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Attendance;
 use App\Models\User;
 use DateTime;
 use Illuminate\Database\Seeder;
@@ -25,6 +27,6 @@ class DatabaseSeeder extends Seeder
             'is_admin'          => true
         ]);
         User::factory(20)->create();
-
+        Attendance::factory(30)->create();
     }
 }
