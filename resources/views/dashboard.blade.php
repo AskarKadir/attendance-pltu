@@ -18,22 +18,22 @@
             <div class="grid grid-cols-4 gap-5 my-5">
                 <div
                     class="p-6 text-gray-900 dark:text-gray-100  bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg h-fit text-center">
-                    <p class="text-8xl">40</p>
-                    <p>Masuk</p>
+                    <p class="text-8xl">{{ $hadirCount }}</p>
+                    <p>Hadir</p>
                 </div>
                 <div
                     class="p-6 text-gray-900 dark:text-gray-100  bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg h-fit text-center">
-                    <p class="text-8xl">10</p>
+                    <p class="text-8xl">{{ $absenCount }}</p>
                     <p>Absen</p>
                 </div>
                 <div
                     class="p-6 text-gray-900 dark:text-gray-100  bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg h-fit text-center">
-                    <p class="text-8xl">5</p>
+                    <p class="text-8xl">{{ $izinCount }}</p>
                     <p>Izin</p>
                 </div>
                 <div
                     class="p-6 text-gray-900 dark:text-gray-100  bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg h-fit text-center">
-                    <p class="text-8xl">13</p>
+                    <p class="text-8xl">{{ $sakitCount }}</p>
                     <p>Sakit</p>
                 </div>
             </div>
