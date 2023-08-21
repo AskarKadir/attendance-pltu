@@ -9,6 +9,13 @@ class AttendanceController extends Controller
 {
     public function index()
     {
+        $admin = auth()->user()->is_admin;
+        if ($admin == false) {
+            $attendances = Attendance::where('user_id', auth()->user()->id)
+                ->paginate(10);
+
+            return view('attendance.index', compact('attendances', 'admin'));
+        }
         $search = request('search');
         if ($search) {
             $attendances = Attendance::whereHas('user', function ($query) use ($search) {
@@ -23,7 +30,7 @@ class AttendanceController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('attendance.index', compact('attendances'));
+        return view('attendance.index', compact('attendances', 'admin'));
     }
 
     public function sakit(Attendance $attendance)
