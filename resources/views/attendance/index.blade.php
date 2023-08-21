@@ -73,7 +73,7 @@
                                         <p>{{ $attendance->user->email }}</p>
                                     </td>
                                     <td>
-                                        <p>{{ $attendance->created_at->format('D, t M Y') }}</p>
+                                        <p>{{ $attendance->created_at->format('D, d F Y') }}</p>
                                     </td>
                                     @if ($attendance->created_at->format('H:i:s') <= '08:00:00')
                                         <td class='text-green-500 dark:text-green-500'>
