@@ -10,6 +10,25 @@ class DashboardController extends Controller
 {
     public function index()
     {
+
+        if (auth()->check() && !auth()->user()->is_admin) {
+            $userId = auth()->user()->id;
+            $today  = Carbon::now()->format('Y-m-d'); // Get current date in 'YYYY-MM-DD' format
+
+            // Check if an attendance record exists for the user on the current day
+            $existingAttendance = Attendance::where('user_id', $userId)
+                ->whereDate('created_at', $today)
+                ->first();
+
+            if (!$existingAttendance) {
+                // Create a new attendance record
+                Attendance::create([
+                    'user_id' => $userId,
+                    'status'  => 'hadir',
+                ]);
+            }
+        }
+
         $hadirCount = $this->hadir();
         $sakitCount = $this->sakit();
         $izinCount  = $this->izin();
