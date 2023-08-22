@@ -237,6 +237,11 @@
                                     </td>
                                 </tr>
                             @empty
+                                <tr class="bg-white dark:bg-gray-800">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                        Empty
+                                    </td>
+                                </tr>
                             @endforelse
                         </tbody>
 
