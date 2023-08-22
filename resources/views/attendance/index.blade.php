@@ -104,8 +104,9 @@
                                     <td class="px-6 py-4">
                                         <div class="flex space-x-3">
                                             {{-- Action here --}}
-                                            @if ($attendance->status == 'hadir')
-                                                {{-- <form method="Post">
+                                            @can('admin')
+                                                @if ($attendance->status == 'hadir')
+                                                    {{-- <form method="Post">
                                                     @csrf
                                                     @method('PATCH')
                                                     <button type="submit"
@@ -113,121 +114,121 @@
                                                         Hadir
                                                     </button>
                                                 </form> --}}
-                                                <form action="{{ route('attendance.sakit', $attendance) }}"
-                                                    method="Post">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button type="submit"
-                                                        class="text-yellow-500 dark:text-yellow-500 whitespace-nowrap">
-                                                        Sakit
-                                                    </button>
-                                                </form>
-                                                <form action="{{ route('attendance.izin', $attendance) }}"
-                                                    method="Post">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button type="submit"
-                                                        class="text-blue-500 dark:text-blue-500 whitespace-nowrap">
-                                                        Izin
-                                                    </button>
-                                                </form>
-                                                <form action="{{ route('attendance.absen', $attendance) }}"
-                                                    method="Post">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button type="submit"
-                                                        class="text-red-500 dark:text-red-500 whitespace-nowrap">
-                                                        Absen
-                                                    </button>
-                                                </form>
-                                            @elseif ($attendance->status == 'sakit')
-                                                <form action="{{ route('attendance.hadir', $attendance) }}"
-                                                    method="Post">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button type="submit"
-                                                        class="text-green-500 dark:text-green-500 whitespace-nowrap">
-                                                        Hadir
-                                                    </button>
-                                                </form>
-                                                <form action="{{ route('attendance.izin', $attendance) }}"
-                                                    method="Post">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button type="submit"
-                                                        class="text-blue-500 dark:text-blue-500 whitespace-nowrap">
-                                                        Izin
-                                                    </button>
-                                                </form>
-                                                <form action="{{ route('attendance.absen', $attendance) }}"
-                                                    method="Post">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button type="submit"
-                                                        class="text-red-500 dark:text-red-500 whitespace-nowrap">
-                                                        Absen
-                                                    </button>
-                                                </form>
-                                            @elseif ($attendance->status == 'izin')
-                                                <form action="{{ route('attendance.hadir', $attendance) }}"
-                                                    method="Post">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button type="submit"
-                                                        class="text-green-500 dark:text-green-500 whitespace-nowrap">
-                                                        Hadir
-                                                    </button>
-                                                </form>
-                                                <form action="{{ route('attendance.sakit', $attendance) }}"
-                                                    method="Post">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button type="submit"
-                                                        class="text-yellow-500 dark:text-yellow-500 whitespace-nowrap">
-                                                        Sakit
-                                                    </button>
-                                                </form>
-                                                <form action="{{ route('attendance.absen', $attendance) }}"
-                                                    method="Post">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button type="submit"
-                                                        class="text-red-500 dark:text-red-500 whitespace-nowrap">
-                                                        Absen
-                                                    </button>
-                                                </form>
-                                            @else
-                                                <form action="{{ route('attendance.hadir', $attendance) }}"
-                                                    method="Post">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button type="submit"
-                                                        class="text-green-500 dark:text-green-500 whitespace-nowrap">
-                                                        Hadir
-                                                    </button>
-                                                </form>
-                                                <form action="{{ route('attendance.sakit', $attendance) }}"
-                                                    method="Post">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button type="submit"
-                                                        class="text-yellow-500 dark:text-yellow-500 whitespace-nowrap">
-                                                        Sakit
-                                                    </button>
-                                                </form>
-                                                <form action="{{ route('attendance.izin', $attendance) }}"
-                                                    method="Post">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button type="submit"
-                                                        class="text-blue-500 dark:text-blue-500 whitespace-nowrap">
-                                                        Izin
-                                                    </button>
-                                                </form>
-                                            @endif
+                                                    <form action="{{ route('attendance.sakit', $attendance) }}"
+                                                        method="Post">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="submit"
+                                                            class="text-yellow-500 dark:text-yellow-500 whitespace-nowrap">
+                                                            Sakit
+                                                        </button>
+                                                    </form>
+                                                    <form action="{{ route('attendance.izin', $attendance) }}"
+                                                        method="Post">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="submit"
+                                                            class="text-blue-500 dark:text-blue-500 whitespace-nowrap">
+                                                            Izin
+                                                        </button>
+                                                    </form>
+                                                    <form action="{{ route('attendance.absen', $attendance) }}"
+                                                        method="Post">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="submit"
+                                                            class="text-red-500 dark:text-red-500 whitespace-nowrap">
+                                                            Absen
+                                                        </button>
+                                                    </form>
+                                                @elseif ($attendance->status == 'sakit')
+                                                    <form action="{{ route('attendance.hadir', $attendance) }}"
+                                                        method="Post">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="submit"
+                                                            class="text-green-500 dark:text-green-500 whitespace-nowrap">
+                                                            Hadir
+                                                        </button>
+                                                    </form>
+                                                    <form action="{{ route('attendance.izin', $attendance) }}"
+                                                        method="Post">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="submit"
+                                                            class="text-blue-500 dark:text-blue-500 whitespace-nowrap">
+                                                            Izin
+                                                        </button>
+                                                    </form>
+                                                    <form action="{{ route('attendance.absen', $attendance) }}"
+                                                        method="Post">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="submit"
+                                                            class="text-red-500 dark:text-red-500 whitespace-nowrap">
+                                                            Absen
+                                                        </button>
+                                                    </form>
+                                                @elseif ($attendance->status == 'izin')
+                                                    <form action="{{ route('attendance.hadir', $attendance) }}"
+                                                        method="Post">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="submit"
+                                                            class="text-green-500 dark:text-green-500 whitespace-nowrap">
+                                                            Hadir
+                                                        </button>
+                                                    </form>
+                                                    <form action="{{ route('attendance.sakit', $attendance) }}"
+                                                        method="Post">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="submit"
+                                                            class="text-yellow-500 dark:text-yellow-500 whitespace-nowrap">
+                                                            Sakit
+                                                        </button>
+                                                    </form>
+                                                    <form action="{{ route('attendance.absen', $attendance) }}"
+                                                        method="Post">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="submit"
+                                                            class="text-red-500 dark:text-red-500 whitespace-nowrap">
+                                                            Absen
+                                                        </button>
+                                                    </form>
+                                                @else
+                                                    <form action="{{ route('attendance.hadir', $attendance) }}"
+                                                        method="Post">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="submit"
+                                                            class="text-green-500 dark:text-green-500 whitespace-nowrap">
+                                                            Hadir
+                                                        </button>
+                                                    </form>
+                                                    <form action="{{ route('attendance.sakit', $attendance) }}"
+                                                        method="Post">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="submit"
+                                                            class="text-yellow-500 dark:text-yellow-500 whitespace-nowrap">
+                                                            Sakit
+                                                        </button>
+                                                    </form>
+                                                    <form action="{{ route('attendance.izin', $attendance) }}"
+                                                        method="Post">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="submit"
+                                                            class="text-blue-500 dark:text-blue-500 whitespace-nowrap">
+                                                            Izin
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            @endcan
                                         </div>
                                     </td>
-
                                 </tr>
                             @empty
                             @endforelse
