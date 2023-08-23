@@ -24,6 +24,9 @@
             <x-input-label for="password" :value="__('Password')" />
             <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
                 autocomplete="new-password" />
+            @if (session('password'))
+                <p class="text-red-500 text-sm mt-2">{{ session('password') }}</p>
+            @endif
         </div>
 
         <!-- Confirm Password -->
@@ -31,6 +34,9 @@
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
             <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
                 name="password_confirmation" required autocomplete="new-password" />
+            @if (session('password'))
+                <p class="text-red-500 text-sm mt-2">{{ session('password') }}</p>
+            @endif
         </div>
 
         <!-- Submit Button -->

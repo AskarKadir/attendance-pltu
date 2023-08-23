@@ -32,14 +32,19 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $validator = Validator::make($request->all(), [
+        $validator      = Validator::make($request->all(), [
             'name'     => ['required', 'string', 'max:255'],
-            'email'    => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        $validatorEmail = Validator::make($request->all(), [
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+        ]);
 
-        if ($validator->fails()) {
+        if ($validatorEmail->fails()) {
             return redirect()->back()->with('email_exists', 'Email already exists.');
+        }
+        if ($validator->fails()) {
+            return redirect()->back()->with('password', 'Password must have 8 character');
         }
 
         $user = User::create([
