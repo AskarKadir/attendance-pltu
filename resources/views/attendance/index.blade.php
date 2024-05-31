@@ -23,8 +23,11 @@
                                 {{ __('Search') }}
                             </x-primary-button>
                             @can('admin')
-                                <x-create-button href=" {{ route('attendance.create') }}"></x-create-button>
+                            <x-create-button href=" {{ route('attendance.create') }}"></x-create-button>
                             @endcan
+                            <x-primary-button type="submit">
+                                {{ __('Export') }}
+                            </x-primary-button>
                         </form>
                     </div>
                     <div class="px-6 text-xl text-gray-900 dark:text-gray-100">
