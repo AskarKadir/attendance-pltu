@@ -27,6 +27,10 @@ Route::middleware(['verified', 'auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/attendance/export', [AttendanceController::class, 'exportToPdf'])->name('attendance.export');
+    Route::get('/attendance/test',function(){
+        return view('attendance.test');
+    });
 
     Route::middleware('admin')->group(function () {
         Route::patch('attendance/{attendance}/hadir', [AttendanceController::class, 'hadir'])->name('attendance.hadir');

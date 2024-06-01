@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Attendance;
 use App\Models\User;
 use Carbon\Carbon;
+use Carbon\Traits\ToStringFormat;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class AttendanceController extends Controller
 {
@@ -114,5 +116,38 @@ class AttendanceController extends Controller
             return redirect()->route('attendance.index')->with('danger', 'Failed when update status!');
 
         }
+    }
+
+    public function exportToPdf()
+    {
+        $admin = auth()->user()->is_admin;
+
+        if ($admin == false) {
+            $attendances = Attendance::where('user_id', auth()->user()->id)->get();
+            $pdf = PDF::loadView('attendance.pdf', ['attendances' => $attendances]);
+            return $pdf->download('attendance_' . auth()->user()->name  . '.pdf');
+        } else {
+            $search = request('search');
+            if ($search) {
+                $attendances = Attendance::whereHas('user', function ($query) use ($search) {
+                    $query->where('status', 'like', '%' . $search . '%')
+                        ->orWhere('name', 'like', '%' . $search . '%');
+                })
+                ->orderBy('created_at', 'desc')
+                ->get();
+            } else {
+                $attendances = Attendance::where('user_id', '!=', '1')
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+            }
+        }
+
+        $pdf = PDF::loadView('attendance.pdf', compact('attendances', 'admin'));
+        if ($search){
+            $safeSearch = preg_replace('/[^A-Za-z0-9\-]/', '_', $search);
+            $filename = 'attendance_report_' . $safeSearch . '.pdf';
+            return $pdf->download($filename);
+        }
+        return $pdf->download('attendance_report.pdf');
     }
 }

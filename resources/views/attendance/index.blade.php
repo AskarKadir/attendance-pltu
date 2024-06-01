@@ -8,27 +8,28 @@
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
-                @can('admin')
-
-                    <div class="px-6 pt-6 mb-5 md:w-1/2 2xl:w-1/2">
+                    <div class="px-6 pt-6 mb-5 md:w-3/4 2xl:w-3/4">
                         @if (request('search'))
                             <h2 class="pb-3 text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                                 Search results for : {{ request('search') }}
                             </h2>
-                        @endif
-                        <form class="flex items-center gap-2">
-                            <x-text-input id="search" name="search" type="text" class="w-full"
-                                placeholder="Search by name or status ..." value="{{ request('search') }}" autofocus />
-                            <x-primary-button type="submit">
-                                {{ __('Search') }}
-                            </x-primary-button>
+                            @endif
                             @can('admin')
-                            <x-create-button href=" {{ route('attendance.create') }}"></x-create-button>
-                            @endcan
-                            <x-primary-button type="submit">
-                                {{ __('Export') }}
-                            </x-primary-button>
-                        </form>
+                            <div class="flex flex-wrap items-center gap-2">
+                                <form class="flex flex-wrap items-center gap-2">
+                                    <x-text-input id="search" name="search" type="text" class="w-auto"
+                                        placeholder="Search by name or status ..." value="{{ request('search') }}" autofocus />
+                                    <x-primary-button type="submit">
+                                        {{ __('Search') }}
+                                    </x-primary-button>
+                                    <x-create-button href="{{ route('attendance.create') }}">
+                                    </x-create-button>
+                                </form>
+                                @endcan
+                                <x-export-button id="export" href="{{ route('attendance.export', ['search' => request('search')]) }}">
+                                    {{ __('Export') }}
+                                </x-export-button>
+                        </div>
                     </div>
                     <div class="px-6 text-xl text-gray-900 dark:text-gray-100">
                         <div class="flex items-center justify-between">
@@ -46,7 +47,6 @@
                             </div>
                         </div>
                     </div>
-                @endcan
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
