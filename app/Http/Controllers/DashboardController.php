@@ -13,7 +13,7 @@ class DashboardController extends Controller
 
         if (auth()->check() && !auth()->user()->is_admin) {
             $userId = auth()->user()->id;
-            $today  = Carbon::now()->format('Y-m-d'); // Get current date in 'YYYY-MM-DD' format
+            $today  = Carbon::now()->format('Y-m-d H:i:s'); // Get current date in 'YYYY-MM-DD' format
 
             // Check if an attendance record exists for the user on the current day
             $existingAttendance = Attendance::where('user_id', $userId)

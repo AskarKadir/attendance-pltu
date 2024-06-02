@@ -3,6 +3,7 @@
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,11 +29,10 @@ Route::middleware(['verified', 'auth'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/attendance/export', [AttendanceController::class, 'exportToPdf'])->name('attendance.export');
-    Route::get('/attendance/test',function(){
-        return view('attendance.test');
-    });
 
     Route::middleware('admin')->group(function () {
+        Route::get('/setting',[SettingController::class, 'index'])->name('setting.index');
+        Route::post('/setting/store',[SettingController::class, 'store'])->name('setting.store');
         Route::patch('attendance/{attendance}/hadir', [AttendanceController::class, 'hadir'])->name('attendance.hadir');
         Route::patch('attendance/{attendance}/absen', [AttendanceController::class, 'absen'])->name('attendance.absen');
         Route::patch('attendance/{attendance}/sakit', [AttendanceController::class, 'sakit'])->name('attendance.sakit');

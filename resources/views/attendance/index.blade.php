@@ -84,7 +84,7 @@
                                     <td>
                                         <p>{{ $attendance->created_at->format('D, d F Y') }}</p>
                                     </td>
-                                    @if ($attendance->created_at->format('H:i:s') <= '08:00:00')
+                                    @if ($attendance->created_at->format('H:i:s') <= $start_time)
                                         <td class='text-green-500 dark:text-green-500'>
                                             <p>{{ $attendance->created_at->format('H : i : s') }}</p>
                                         </td>

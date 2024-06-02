@@ -8,33 +8,40 @@ use Carbon\Carbon;
 use Carbon\Traits\ToStringFormat;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use App\Models\Clock;
 
 class AttendanceController extends Controller
 {
     public function index()
     {
+        $clock = Clock::find(1);
+        // parse time to string
+        $start_time = Carbon::parse($clock->start_time)->format('H:i:s');
         $admin = auth()->user()->is_admin;
+        // dd($clock->start_time);
         if ($admin == false) {
             $attendances = Attendance::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'asc')
                 ->paginate(10);
 
-            return view('attendance.index', compact('attendances', 'admin'));
-        }
+
+                return view('attendance.index', compact('attendances', 'admin', 'start_time'));
+            }
         $search = request('search');
         if ($search) {
             $attendances = Attendance::whereHas('user', function ($query) use ($search) {
                 $query->where('status', 'like', '%' . $search . '%')
-                    ->orWhere('name', 'like', '%' . $search . '%');
+                ->orWhere('name', 'like', '%' . $search . '%');
             })
-                ->orderBy('created_at', 'desc')
+                ->orderBy('created_at', 'asc')
                 ->paginate(20)
                 ->withQueryString();
-        } else {
-            $attendances = Attendance::where('user_id', '!=', '1')
-                ->orderBy('created_at', 'desc')
+            } else {
+                $attendances = Attendance::where('user_id', '!=', '1')
+                ->orderBy('created_at', 'asc')
                 ->paginate(10);
-        }
-        return view('attendance.index', compact('attendances', 'admin'));
+            }
+        return view('attendance.index', compact('attendances', 'admin', 'start_time'));
     }
 
     public function create()
