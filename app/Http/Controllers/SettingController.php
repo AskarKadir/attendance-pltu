@@ -22,9 +22,9 @@ class SettingController extends Controller
             'start_time' => 'required',
             'end_time' => 'required',
         ]);
-        // dd($request->all());
         $start_time = Carbon::parse($request->start_time)->format('H:i:s');
-        $end_time = Carbon::parse("17:00")->format('H:i:s');
+        $end_time = Carbon::parse("18:00")->format('H:i:s');
+        // dd($end_time);
 
         // // Check if data already exists
         $exist = Clock::where('id', 1)->get()->first();
